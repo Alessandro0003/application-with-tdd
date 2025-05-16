@@ -1,0 +1,24 @@
+name: Run Unitary Tests 🧪
+
+on: [push]
+
+jobs:
+  unitary-test:
+    name: Run Unitary Tests 🧪
+    runs-on: ubuntu-latest
+
+  steps:
+    - name: Checkout code 📥
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js 🔧
+      uses: actions/setup-node@v4
+      with:
+        node-version: 22
+        cache: 'npm'
+    
+    - name: Install dependencies 📦
+      run: npm ci
+
+    - name: Run Unitary Tests 🧪
+      run: npm run test:unit
