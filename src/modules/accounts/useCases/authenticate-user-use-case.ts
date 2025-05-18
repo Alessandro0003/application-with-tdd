@@ -1,3 +1,5 @@
+import { compare } from 'bcryptjs';
+import { sign } from 'jsonwebtoken';
 
 interface IRequest {
   email: string;
@@ -22,15 +24,13 @@ export class AuthenticateUserUseCase {
       throw new Error('Email or password incorrect');
     }
 
-    // @ts-ignore !TODO Implemente compare
     const passwordMatch = await compare(password, user.password);
 
     if (!passwordMatch) {
       throw new Error('Email or password incorrect');
     }
 
-    // @ts-ignore !TODO Implemente sign
-    const token = sign({}, "cfe275a5908b5650488e0b0342c2d6cc", {
+    const token = sign({ }, "cfe275a5908b5650488e0b0342c2d6cc", {
       subject: user.id,
       expiresIn: "1d"
     })

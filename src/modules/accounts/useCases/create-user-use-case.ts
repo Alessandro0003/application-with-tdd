@@ -1,3 +1,4 @@
+import { hash } from "bcryptjs";
 
 interface CreateUserUseCaseProps {
   name: string;
@@ -16,10 +17,12 @@ export class CreateUserUseCase {
       throw new Error('User already exists');
     }
 
+    const passwordHash = await hash(password, 8)
+
     this.usersRepository.create({
       name,
       email,
-      password,
+      password: passwordHash,
       driver_license
     });
   }
