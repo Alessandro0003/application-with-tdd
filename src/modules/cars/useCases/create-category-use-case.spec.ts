@@ -2,6 +2,7 @@ import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import { CategoryRepositoryInMemory } from '../repositories/in-memory/category-repository-in-memory';
 import { CreateCategoryUseCase } from './create-category-use-case';
 import { randomUUID } from 'crypto';
+import { CreateCarsDTO } from '../dtos/create-cars';
 
 let createCategoryUseCase: CreateCategoryUseCase;
 let createCategoryRpositoryInMemory: CategoryRepositoryInMemory;
@@ -15,7 +16,7 @@ describe('Create Category', () => {
   })
 
   it('should be able to create a new category', async () => {
-    const category = {
+    const category: CreateCarsDTO = {
       name: 'Category Teste',
       description: 'Category Teste Description'
     }
@@ -25,14 +26,14 @@ describe('Create Category', () => {
       description: category.description
     });
 
-    const result = await createCategoryRpositoryInMemory.findByName(category.name);
+    const result = await createCategoryRpositoryInMemory.findByName(category.name!);
 
     expect(result).toHaveProperty('id');
   })
 
   it('should not be able to create a new category with name exists', async () => {
     expect(async () => {
-      const category = {
+      const category: CreateCarsDTO = {
         name: 'Category Teste',
         description: 'Category Teste Description'
       }
