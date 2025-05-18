@@ -1,13 +1,9 @@
-
-interface CreateCategoryProps {
-  name: string;
-  description: string;
-}
+import { CreateCarsDTO } from "../dtos/create-cars";
 
 export class CreateCategoryUseCase {
   constructor(private categoryRepository: any) {}
 
-  async execute({ name, description }: CreateCategoryProps): Promise<void> {
+  async execute({ name, description }: CreateCarsDTO): Promise<void> {
     const categoryAlreadyExists = await this.categoryRepository.findByName(name);
 
     if (categoryAlreadyExists) {

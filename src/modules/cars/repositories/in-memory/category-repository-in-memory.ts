@@ -1,28 +1,24 @@
 import { randomUUID } from "node:crypto";
+import { CreateCarsDTO } from "../../dtos/create-cars";
 
-interface Category {
-  id: string;
-  name: string;
-  description: string;
-}
 
 export class CategoryRepositoryInMemory {
 
-  categories: Category[] = []
+  categories: CreateCarsDTO[] = []
 
-  async findByName(name: string): Promise<Category | undefined> {
+  async findByName(name: string): Promise<CreateCarsDTO | undefined> {
     const category = this.categories.find((category) => category.name === name);
     return category;
   }
 
-  async list(): Promise<Category[]> {
+  async list(): Promise<CreateCarsDTO[]> {
     const all = this.categories;
     return all;
   }
 
-  async create({ name, description }: Omit<Category, "id">): Promise<void> {
+  async create({ name, description }: Omit<CreateCarsDTO, "id">): Promise<void> {
     const id = randomUUID();
-    const category: Category = {
+    const category: CreateCarsDTO = {
       id,
       name,
       description
