@@ -4,12 +4,16 @@
 
   "compilerOptions": {
     "lib": ["dom", "es2023"],
-    "module": "nodenext",
+    "module": "CommonJS",
+    "strictPropertyInitialization": true,
     "target": "es2022",
 
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "moduleResolution": "node16"
+    // "moduleResolution": "node16"
+
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   }
 }
