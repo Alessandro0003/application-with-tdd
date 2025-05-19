@@ -1,4 +1,4 @@
-import { Cars } from "../entities/cars";
+import { Cars } from "../infra/typeorm/entities/cars";
 
 export class CreateCarsDTO extends Cars {
   declare name: string;

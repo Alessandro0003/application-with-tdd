@@ -1,4 +1,4 @@
-import { User } from "../entities/user";
+import { User } from "../infra/typeorm/entities/user";
 
 export class CreateUserDTO extends User {
   declare name: string;
